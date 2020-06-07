@@ -6,10 +6,10 @@ const fileWriterStream = require('./lib/file-writer-stream')
 
 const prepareFileStream = ({ outputDirectory }) =>
   ({ uri, title, content }) => {
-    let url = new URL(uri.spec, uri.prePath)
-    let dir = path.join(outputDirectory, url.host, encodeURIComponent(url.pathname.slice(1)))
-    let base = `${Date.now()}.readable.html`
-    let filename = path.format({ dir, base })
+    const url = new URL(uri.spec, uri.prePath)
+    const dir = path.join(outputDirectory, url.host, encodeURIComponent(url.pathname.slice(1)))
+    const base = `${Date.now()}.readable.html`
+    const filename = path.format({ dir, base })
 
     return {
       filename,

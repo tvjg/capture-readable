@@ -5,13 +5,13 @@ const CaptureReadableStream = require('../')
 
 const DEFAULTS = {
   'pool-size': 2,
-  'output': './'
+  output: './'
 }
 
 const ALIASES = {
-  'output': 'o',
-  'verbose': 'v',
-  'help': 'h'
+  output: 'o',
+  verbose: 'v',
+  help: 'h'
 }
 
 const argv = parseArgs(process.argv.slice(2), {
@@ -25,7 +25,7 @@ const usage = () =>
 
 Options:
   --pool-size    maximum number of headless Chromium instances to allocate  [default: ${DEFAULTS['pool-size']}]
-  --output, -o   destination folder for captured HTML                       [default: ${DEFAULTS['output']}]
+  --output, -o   destination folder for captured HTML                       [default: ${DEFAULTS.output}]
   --verbose, -v  enable debugging output
   --help, -h     display this message
 `
@@ -37,7 +37,7 @@ const fail = (msg) => {
   process.exit(1)
 }
 
-if (argv['help']) {
+if (argv.help) {
   console.log(usage())
   process.exit()
 }
@@ -48,8 +48,8 @@ const uris = process.stdin.isTTY
 
 const opts = {
   poolSize: argv['pool-size'],
-  outputDirectory: argv['output'],
-  verbose: argv['verbose']
+  outputDirectory: argv.output,
+  verbose: argv.verbose
 }
 
 highland(uris)
