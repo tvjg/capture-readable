@@ -5,8 +5,8 @@ const ReadabilityStream = require('./lib/readability-stream')
 const fileWriterStream = require('./lib/file-writer-stream')
 
 const prepareFileStream = ({ outputDirectory }) =>
-  ({ uri, title, content }) => {
-    const url = new URL(uri.spec, uri.prePath)
+  ({ href, origin, title, content }) => {
+    const url = new URL(href, origin)
     const dir = path.join(outputDirectory, url.host, encodeURIComponent(url.pathname.slice(1)))
     const base = `${Date.now()}.readable.html`
     const filename = path.format({ dir, base })
